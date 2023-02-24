@@ -34,6 +34,7 @@ nextTick(() => {
       activeRule: '/bpmn',
     },
   ]);
+  console.log('asda')
   // 启动子应用
   start();
 });
