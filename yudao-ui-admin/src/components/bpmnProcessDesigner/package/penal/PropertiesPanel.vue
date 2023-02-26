@@ -261,7 +261,7 @@ export default {
               type:  ${activatedElement.businessObject.$type}
               ----------
               `)
-      console.log('businessObject: ', activatedElement.businessObject)
+      // console.log('businessObject: ', activatedElement.businessObject)
       window.bpmnInstances.bpmnElement = activatedElement
       this.bpmnElement = activatedElement
       this.elementId = activatedElement.id

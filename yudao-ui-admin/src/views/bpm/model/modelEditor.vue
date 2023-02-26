@@ -65,13 +65,11 @@ export default {
     }
   },
   created() {
-    console.log('哈哈哈')
   },
   methods: {
     initModeler(modeler) {
       setTimeout(() => {
         this.modeler = modeler
-        console.log(modeler)
       }, 10)
     },
     save(bpmnXml) {

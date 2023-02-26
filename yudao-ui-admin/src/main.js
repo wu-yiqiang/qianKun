@@ -103,11 +103,6 @@ Vue.config.productionTip = false
 /* 渲染函数 */
 function render(props = {}) {
   const { container } = props;
-  // const routers = new VueRouter({
-  //   base: window.__POWERED_BY_QIANKUN__ ? '/bpmn/' : '/',  // 运行在主应用中时，添加路由命名空间 /app-vue
-  //   mode: 'history',
-  //   router,
-  // });
   const instance = new Vue({
     router,
     store,

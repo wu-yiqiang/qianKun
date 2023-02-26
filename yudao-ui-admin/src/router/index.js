@@ -69,6 +69,7 @@ Router.prototype.push = function push(location) {
       return routerPush.call(this, location).catch(err => err)
     }
 
+    console.log('BPMN', window.__POWERED_BY_QIANKUN__)
 export default new Router({
       base: window.__POWERED_BY_QIANKUN__ ? '/bpmn/' : '/',
       mode: 'history', // 去掉url中的#
