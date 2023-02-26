@@ -7,7 +7,6 @@ import '@/assets/styles/index.scss' // global css
 import '@/assets/styles/ruoyi.scss' // ruoyi css
 import App from './App'
 import store from './store'
-// import {constantRoutes} from './router'
 import router from './router'
 import VueRouter from 'vue-router'
 import directive from './directive' // directive
@@ -104,16 +103,17 @@ Vue.config.productionTip = false
 /* 渲染函数 */
 function render(props = {}) {
   const { container } = props;
-  const router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? '/bpmn/' : '/',  // 运行在主应用中时，添加路由命名空间 /app-vue
-    mode: 'history',
-    router,
-  });
-  let instance = new Vue({
+  // const routers = new VueRouter({
+  //   base: window.__POWERED_BY_QIANKUN__ ? '/bpmn/' : '/',  // 运行在主应用中时，添加路由命名空间 /app-vue
+  //   mode: 'history',
+  //   router,
+  // });
+  const instance = new Vue({
     router,
     store,
     render: (h) => h(App),
-  }).$mount(container ? container.querySelector('#app') : '#app'); // 为了避免根id #app 与其他的 DOM 冲突，限制查找范围
+  })
+  instance.$mount(container ? container.querySelector('#app') : '#app'); // 为了避免根id #app 与其他的 DOM 冲突，限制查找范围
 }
 
 // 独立运行时

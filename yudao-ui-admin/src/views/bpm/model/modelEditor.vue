@@ -65,6 +65,7 @@ export default {
     }
   },
   created() {
+    console.log('哈哈哈')
   },
   methods: {
     initModeler(modeler) {

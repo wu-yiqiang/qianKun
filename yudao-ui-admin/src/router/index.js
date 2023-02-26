@@ -32,77 +32,46 @@ export const constantRoutes = [
     path: '/',
     redirect: '/bpm/manager/model/design'
   },
-
   {
     path: '/bpm',
     component: Layout,
     hidden: true,
     redirect: 'redirect',
     children: [{
-      path: 'oa/leave/create',
-      component: (resolve) => require(['@/views/bpm/oa/leave/create'], resolve),
-      name: '发起 OA 请假',
-      meta: { title: '发起 OA 请假', icon: 'form', activeMenu: '/bpm/oa/leave' }
-    }, {
-      path: 'oa/leave/detail',
-      component: (resolve) => require(['@/views/bpm/oa/leave/detail'], resolve),
-      name: '查看 OA 请假',
-      meta: { title: '查看 OA 请假', icon: 'view', activeMenu: '/bpm/oa/leave' }
+      path: '/bpm',
+      component: Layout,
+      hidden: true,
+      children: [{
+        path: 'manager/model/design',
+        component: (resolve) => require(['@/views/bpm/model/modelEditor'], resolve),
+        name: '设计流程',
+        meta: { title: '设计流程', activeMenu: '/bpm/manager/model' }
+      }
+      ]
+    },
+    {
+      path: '/404',
+      component: (resolve) => require(['@/views/error/404'], resolve),
+      hidden: true
+    },
+    {
+      path: '/401',
+      component: (resolve) => require(['@/views/error/401'], resolve),
+      hidden: true
     }
     ]
-  }, {
-    path: '/bpm',
-    component: Layout,
-    hidden: true,
-    children: [{
-      path: 'manager/form/edit',
-      component: (resolve) => require(['@/views/bpm/form/formEditor'], resolve),
-      name: '流程表单-编辑',
-      meta: { title: '流程表单-编辑', activeMenu: '/bpm/manager/form' }
-    }, {
-      path: 'manager/definition',
-      component: (resolve) => require(['@/views/bpm/definition/index'], resolve),
-      name: '流程定义',
-      meta: { title: '流程定义', activeMenu: '/bpm/manager/model' }
-    }, {
-      path: 'manager/model/design',
-      component: (resolve) => require(['@/views/bpm/model/modelEditor'], resolve),
-      name: '设计流程',
-      meta: { title: '设计流程', activeMenu: '/bpm/manager/model' }
-    }, {
-      path: 'process-instance/create',
-      component: (resolve) => require(['@/views/bpm/processInstance/create'], resolve),
-      name: '发起流程',
-      meta: { title: '发起流程', activeMenu: '/bpm/task/my' }
-    }, {
-      path: 'process-instance/detail',
-      component: (resolve) => require(['@/views/bpm/processInstance/detail'], resolve),
-      name: '流程详情',
-      meta: { title: '流程详情', activeMenu: '/bpm/task/my' }
-    }
-    ]
-  },
-  {
-    path: '/404',
-    component: (resolve) => require(['@/views/error/404'], resolve),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: (resolve) => require(['@/views/error/401'], resolve),
-    hidden: true
   }
 ]
 
 // 防止连续点击多次路由报错
 const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(err => err)
-}
+      return routerPush.call(this, location).catch(err => err)
+    }
 
 export default new Router({
-  base: process.env.VUE_APP_APP_NAME ? process.env.VUE_APP_APP_NAME : '/',
-  mode: 'history', // 去掉url中的#
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+      base: window.__POWERED_BY_QIANKUN__ ? '/bpmn/' : '/',
+      mode: 'history', // 去掉url中的#
+      scrollBehavior: () => ({ y: 0 }),
+      routes: constantRoutes
+    })

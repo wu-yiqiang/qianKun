@@ -1,5 +1,5 @@
-import { createApp, nextTick } from 'vue';
-import { registerMicroApps, start } from 'qiankun';
+import { createApp } from 'vue';
+
 import ArcoVue from '@arco-design/web-vue';
 import ArcoVueIcon from '@arco-design/web-vue/es/icon';
 import globalComponents from '@/components';
@@ -12,6 +12,7 @@ import App from './App.vue';
 import '@arco-design/web-vue/dist/arco.css';
 import '@/assets/style/global.less';
 import '@/api/interceptor';
+import './register';
 
 const app = createApp(App);
 
@@ -24,17 +25,3 @@ app.use(globalComponents);
 app.use(directive);
 app.mount('#app');
 
-/* 确保装载子应用的容器已创建，等DOM加载完成后启动子应用 */
-nextTick(() => {
-  registerMicroApps([
-    {
-      name: 'bpmn',
-      entry: '//localhost:6789',
-      container: '#micro-app-container',
-      activeRule: '/bpmn',
-    },
-  ]);
-  console.log('asda')
-  // 启动子应用
-  start();
-});

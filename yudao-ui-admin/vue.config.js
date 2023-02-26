@@ -1,7 +1,8 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
-const { name } = require('./package');
+// const { name } = require('./package');
+const { packageName } = require('./package')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -76,9 +77,9 @@ module.exports = {
       })
     ],
     output: {
-      library: `${name}-[name]`,
+      library: 'bpmn',
       libraryTarget: 'umd', // 把子应用打包成 umd 库格式
-      jsonpFunction: `webpackJsonp_${name}`,
+      jsonpFunction: `webpackJsonp_${packageName}`
     }
   },
   chainWebpack(config) {
