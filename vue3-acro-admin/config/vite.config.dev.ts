@@ -2,6 +2,7 @@ import { mergeConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 import baseConfig from './vite.config.base';
 import qiankun from 'vite-plugin-qiankun';
+import {name} from '../package.json'
 export default mergeConfig(
   {
     mode: 'development',
@@ -29,8 +30,18 @@ export default mergeConfig(
         include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue'],
         exclude: ['node_modules'],
       }),
-      qiankun('micro-app-baseVue', { useDevMode: true })
+      qiankun(name, {
+        useDevMode: true
+      })
     ],
+    // build: {
+    //   target: 'esnext',
+    //   lib: {
+    //     name,
+    //     entry: 'src/main.ts',
+    //     formate: ['umd']
+    //   }
+    // }
   },
   baseConfig
 );

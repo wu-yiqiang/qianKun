@@ -2,12 +2,14 @@
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
 // const { name } = require('./package');
-const { packageName } = require('./package')
+// const { packageName } = require('./package')
+// console.log('log', packageName)
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 const CompressionPlugin = require('compression-webpack-plugin')
+const { options } = require('runjs')
 
 const name = process.env.VUE_APP_TITLE || '芋道管理系统' // 网页标题
 
@@ -79,7 +81,7 @@ module.exports = {
     output: {
       library: 'bpmn',
       libraryTarget: 'umd', // 把子应用打包成 umd 库格式
-      jsonpFunction: `webpackJsonp_${packageName}`
+      // jsonpFunction: `webpackJsonp_${packageName}`
     }
   },
   chainWebpack(config) {
@@ -102,6 +104,22 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+      // config.module
+      // .rule('fonts')
+      // .test(/\.(ttf|otf|eot|woff|woff2)$/)
+      // .use('url-loader')
+      // .loader('url-loader')
+      // .tap(
+      //   options => {
+      //     options = {
+      //       ...options,
+      //       limit: 999999,
+      //       name: '[name].[hash:7].[ext]',
+      //     }
+      //   }
+      // )
+      // .end()
+
 
     config
       .when(process.env.NODE_ENV !== 'development',
